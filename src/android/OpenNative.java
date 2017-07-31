@@ -1,32 +1,43 @@
-package cordova-plugin-open-native;
+package com.caobaohe.cordova.opennative;
 
-import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
-
+import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
+import android.content.Intent;
 
 /**
- * This class echoes a string called from JavaScript.
+ * cordova 自定义插件打开android系统原生应用
+ * 
+ * @author caobaohe
+ *
  */
 public class OpenNative extends CordovaPlugin {
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("coolMethod")) {
-            String message = args.getString(0);
-            this.coolMethod(message, callbackContext);
-            return true;
-        }
-        return false;
-    }
+	private static final String TAG = "OpenNative";
 
-    private void coolMethod(String message, CallbackContext callbackContext) {
-        if (message != null && message.length() > 0) {
-            callbackContext.success(message);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
-    }
+	public OpenNative() {
+	}
+
+	@Override
+	public boolean execute(String action, JSONArray args,
+			CallbackContext callbackContext) throws JSONException {
+		// return super.execute(action, args, callbackContext);
+		if ("open".equals(action)) {
+			this.open(args.getString(0));
+		} else {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * 打开一个activity
+	 */
+	private void open(String action) {
+		Intent intent = new Intent(action);
+		// android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS // 打开系统设置界面
+		this.cordova.getActivity().startActivity(intent);
+	}
 }

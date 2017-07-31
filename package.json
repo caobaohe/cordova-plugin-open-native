@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-open-native",
+  "version": "1.0.0",
+  "description": "This is cordova plugin for open native",
+  "cordova": {
+    "id": "cordova-plugin-open-native",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caobaohe/cordova-plugin-open-native.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "cbhnpm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caobaohe/cordova-plugin-open-native/issues"
+  },
+  "homepage": "https://github.com/caobaohe/cordova-plugin-open-native#readme"
+}
