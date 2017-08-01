@@ -21,11 +21,7 @@
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
-	
-	/*
-    NSURL *url = [NSURL URLWithString:@"App-Prefs:root=Privacy&path=LOCATION"];
-    [[UIApplication sharedApplication] openURL:url];
-    */
+
     NSURL *url = [NSURL URLWithString:@"App-Prefs:root=Privacy&path=LOCATION"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
