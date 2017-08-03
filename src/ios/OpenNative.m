@@ -6,12 +6,12 @@
   // Member variables go here.
 }
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)open:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation OpenNative
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)open:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];
@@ -21,8 +21,21 @@
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
-
-    NSURL *url = [NSURL URLWithString:@"App-Prefs:root=Privacy&path=LOCATION"];
+    NSString* intent = nil;
+    NSLog(@"echo: %@", echo);
+    if ([@"setting_service" isEqualToString:echo]) {
+        intent = @"App-Prefs:root=SETTING";
+    } else if ([@"location_service" isEqualToString:echo]) {
+        intent = @"App-Prefs:root=Privacy&path=LOCATION";
+    } else if ([@"bluetooth_service" isEqualToString:echo]) {
+        intent = @"App-Prefs:root=Bluetooth";
+    } else if ([@"date_service" isEqualToString:echo]) {
+        //intent = @"App-Prefs:root=General&path=INTERNATIONAL";
+        intent = @"App-Prefs:root=General&path=DATE_AND_TIME";
+    } else if ([@"sound_service" isEqualToString:echo]) {
+        intent = @"App-Prefs:root=Sounds";
+    }
+    NSURL *url = [NSURL URLWithString:intent];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url];
     }else{

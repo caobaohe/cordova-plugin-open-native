@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-open-native",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "This is cordova plugin for open native",
   "cordova": {
     "id": "cordova-plugin-open-native",
