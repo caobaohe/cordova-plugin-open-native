@@ -28,24 +28,18 @@ public class OpenNative extends CordovaPlugin {
 		if ("open".equals(action)) {
 			String intent = args.getString(0);
 			LOG.d(LOG_TAG, "OpenNative:" + intent);
-			switch (intent) {
-				case "setting_service":
+			if (intent != null && !intent.equals("")) {
+				if ("setting_service".equals(intent)) {
 					this.open(android.provider.Settings.ACTION_SETTINGS);
-					break;
-				case "location_service":
+				} else if ("location_service".equals(intent)) {
 					this.open(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-					break;
-				case "bluetooth_service":
+				} else if ("bluetooth_service".equals(intent)) {
 					this.open(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS);
-					break;
-				case "date_service":
+				} else if ("date_service".equals(intent)) {
 					this.open(android.provider.Settings.ACTION_DATE_SETTINGS);
-					break;
-				case "sound_service":
+				} else if ("sound_service".equals(intent)) {
 					this.open(android.provider.Settings.ACTION_SOUND_SETTINGS);
-					break;
-				default:
-					break;
+				}
 			}
 		} else {
 			return false;
